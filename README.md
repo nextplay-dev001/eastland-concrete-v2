@@ -21,6 +21,8 @@ Implemented:
 - About page
 - Service-area strategy page
 - Existing Eastland testimonial carried into the new design
+- Review section ready for a future Google review feed (`docs/reviews-feed.md`)
+- Projects gallery with lightbox
 - Interactive five-step estimate wizard
 - Browser draft-saving for the wizard
 - Test-mode email handoff to `info@eastlandconcretekc.com`
@@ -29,6 +31,17 @@ Implemented:
 - GitHub Pages deployment workflow
 - Development `noindex` protection and `robots.txt` block
 - Custom 404 page
+
+## Design system
+
+Visual direction: industrial / architectural construction branding built on the existing Eastland colors (black, charcoal, concrete gray, warm off-white, Eastland red).
+
+- **Type:** Archivo (variable, condensed widths for display headings, normal width for body) + IBM Plex Mono for technical labels. Both load from Google Fonts with `display=swap`.
+- **Tokens:** all colors, fonts, spacing and textures are CSS custom properties at the top of `styles.css`. The file has a numbered section index.
+- **Texture:** concrete grain, clouding and blueprint grid lines are inline SVG / CSS gradients. They add no image requests.
+- **Icons:** `assets/icons.svg` is an SVG sprite (`<svg class="icon"><use href="assets/icons.svg#i-driveway"/></svg>`).
+- **Motion:** scroll reveals, light hero parallax and hover transitions are CSS plus about 40 lines of JS. All of it turns off under `prefers-reduced-motion`. Content stays visible if JS doesn't run.
+- **Shared markup:** the header, footer and mobile action bar are repeated in each HTML file (there is no build step). When you change one, change all 12 pages.
 
 ## Partial lead recovery
 
@@ -67,7 +80,15 @@ For production, replace the email handoff with a secure server-side endpoint tha
 
 ## Project photos
 
-The visible demo uses existing Eastland project photography from the current public website. Keep those photos or replace them with higher-resolution originals from Tommy before production launch.
+The demo uses four real Eastland project photos hotlinked from the current public website (`eastlandconcretekc.com/wp-content/uploads/2023/02/`). Each `<img>` has a `srcset` built from the WordPress renditions that already exist, so the browser picks a size to match the layout.
+
+- The driveway photo (960 px max) is used only at sizes where it stays sharp.
+- The fresh-slab photo has the photographer's shadow in its lower third. Where it appears, it's cropped from the top.
+- Before production, self-host optimized copies (WebP/AVIF + JPEG) under `assets/` or swap in higher-resolution originals from Tommy. Only the `src`/`srcset` values change; the layout already handles any 4:3 or 3:4 photo.
+
+## Reviews
+
+The homepage shows one static testimonial. It is not live-synced. The section is built as a carousel that can load Google reviews (4+ stars only) from a future endpoint via `window.EASTLAND_REVIEWS_ENDPOINT`. See `docs/reviews-feed.md`.
 
 ## Search / SEO status
 
