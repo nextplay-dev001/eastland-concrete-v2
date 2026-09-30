@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="t d">
+<title id="t">Foundation project placeholder</title><desc id="d">Stylized concrete foundation visual for the Eastland test website. Replace with a real Eastland project photo before launch.</desc>
+<rect width="1200" height="800" fill="#17181a"/><path d="M150 560V300h180v140h530V300h190v260H850v-72H350v72z" fill="#bcb9b2"/><path d="M150 560h900v80H150z" fill="#d8d5cf"/><path d="M150 300h180M860 300h190M350 440h500" stroke="#f1eee8" stroke-width="8" opacity=".62"/>
+<path d="M110 670h980" stroke="#b81721" stroke-width="10"/>
+<g fill="#fff" font-family="Arial,sans-serif"><text x="70" y="90" font-size="23" font-weight="700" letter-spacing="4">EASTLAND CONCRETE</text><text x="70" y="130" font-size="15" opacity=".72" letter-spacing="2">PROJECT PHOTO PLACEHOLDER • FOUNDATION</text></g>
+</svg>
