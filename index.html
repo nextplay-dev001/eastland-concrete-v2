@@ -172,12 +172,12 @@
         <div class="estimate-copy">
           <p class="eyebrow">START YOUR PROJECT</p>
           <h2>Tell us what you're working on.</h2>
-          <p>The GitHub Pages test uses an email handoff so the entire customer flow can be tested without choosing the permanent hosting or email backend yet.</p>
+          <p>The GitHub Pages test uses an email handoff for completed requests. The production build will also save partial leads after valid contact information is entered, so Eastland can follow up when someone gets interrupted.</p>
           <a class="phone-link" href="tel:+19133337238">(913) 333-7238</a>
         </div>
 
         <form class="estimate-card quote-wizard" id="quoteWizard" novalidate>
-          <div class="test-mode-note"><strong>TEST MODE:</strong> final submit opens a pre-filled email to info@eastlandconcretekc.com. A production backend will send it automatically.</div>
+          <div class="test-mode-note"><strong>TEST MODE:</strong> completed requests open a pre-filled email to info@eastlandconcretekc.com. Automatic partial-lead emails require the production backend, so the test build only saves the draft locally.</div>
           <div class="wizard-topline"><div><p class="form-step" id="wizardStepLabel">STEP 1 OF 5</p><span class="wizard-estimate-time">About 2 minutes</span></div><span class="wizard-save-note">Draft saves on this device</span></div>
           <div class="form-progress" aria-hidden="true"><span id="wizardProgress"></span></div>
 
@@ -194,13 +194,23 @@
           </section>
 
           <section class="wizard-panel" data-step="2">
+            <p class="wizard-kicker">CONTACT INFO</p><h3>How can Eastland reach you?</h3>
+            <p class="wizard-help">Add your contact details early so Eastland can follow up if you get interrupted before finishing the request.</p>
+            <div class="form-grid two-col"><label>First name <span>*</span><input name="firstName" autocomplete="given-name" placeholder="First name" required /></label><label>Last name <span>*</span><input name="lastName" autocomplete="family-name" placeholder="Last name" required /></label></div>
+            <label>Phone number <span>*</span><input name="phone" type="tel" autocomplete="tel" placeholder="(913) 555-1234" required /></label>
+            <label>Email address <span>*</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com" required /></label>
+            <label class="checkbox-row"><input type="checkbox" name="textOkay" checked /><span>Texting is okay for project follow-up</span></label>
+            <p class="partial-disclosure">If you enter contact information but do not finish the request, Eastland may use the information you provided to follow up about this project. Your request will be marked as incomplete.</p>
+          </section>
+
+          <section class="wizard-panel" data-step="3">
             <p class="wizard-kicker">PROJECT LOCATION</p><h3>Where is the project?</h3><p class="wizard-help">This will help Eastland confirm the project is within its working area.</p>
             <div class="form-grid two-col"><label>City <span>*</span><input name="city" autocomplete="address-level2" placeholder="City" required /></label><label>ZIP code <span>*</span><input name="zip" inputmode="numeric" autocomplete="postal-code" placeholder="ZIP" required /></label></div>
             <label>Project address <span class="optional">Optional</span><input name="address" autocomplete="street-address" placeholder="Street address" /></label>
             <label class="checkbox-row"><input type="checkbox" name="propertyOwner" /><span>I own or manage this property</span></label>
           </section>
 
-          <section class="wizard-panel" data-step="3">
+          <section class="wizard-panel" data-step="4">
             <p class="wizard-kicker">PROJECT DETAILS</p><h3>Give us a little more context.</h3>
             <div class="form-grid two-col">
               <label>New or replacement?<select name="projectCondition"><option value="">Select one</option><option>New concrete</option><option>Replace existing concrete</option><option>Repair / unsure</option></select></label>
@@ -210,18 +220,10 @@
             <label>Tell us about the project <span>*</span><textarea name="details" rows="5" placeholder="What are you building, replacing or trying to fix?" required></textarea></label>
           </section>
 
-          <section class="wizard-panel" data-step="4">
-            <p class="wizard-kicker">PHOTOS</p><h3>Show us what you're working with.</h3><p class="wizard-help">Photo selection works in this test, but email apps do not allow a website to auto-attach those files. The production backend will handle uploads.</p>
-            <label class="upload-zone" for="projectPhotos"><input id="projectPhotos" name="photos" type="file" accept="image/*" multiple /><span class="upload-plus">+</span><strong>Add project photos</strong><span>Take photos now or choose from your phone</span></label>
-            <div class="upload-preview" id="uploadPreview" aria-live="polite"></div><button class="skip-link" type="button" data-next>Skip photos for now →</button>
-          </section>
-
           <section class="wizard-panel" data-step="5">
-            <p class="wizard-kicker">CONTACT INFO</p><h3>Where should Eastland follow up?</h3>
-            <div class="form-grid two-col"><label>First name <span>*</span><input name="firstName" autocomplete="given-name" placeholder="First name" required /></label><label>Last name <span>*</span><input name="lastName" autocomplete="family-name" placeholder="Last name" required /></label></div>
-            <label>Phone number <span>*</span><input name="phone" type="tel" autocomplete="tel" placeholder="(913) 555-1234" required /></label>
-            <label>Email address <span>*</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com" required /></label>
-            <label class="checkbox-row"><input type="checkbox" name="textOkay" checked /><span>Texting is okay for project follow-up</span></label>
+            <p class="wizard-kicker">PHOTOS + REVIEW</p><h3>Anything else that would help?</h3><p class="wizard-help">Photos are optional. In production, they will upload with the lead. Review the summary below and send when ready.</p>
+            <label class="upload-zone" for="projectPhotos"><input id="projectPhotos" name="photos" type="file" accept="image/*" multiple /><span class="upload-plus">+</span><strong>Add project photos</strong><span>Take photos now or choose from your phone</span></label>
+            <div class="upload-preview" id="uploadPreview" aria-live="polite"></div>
             <div class="lead-summary" id="leadSummary"></div>
           </section>
 
@@ -232,7 +234,7 @@
 
           <div class="wizard-error" id="wizardError" role="alert"></div>
           <div class="wizard-actions" id="wizardActions"><button class="wizard-back" type="button" id="wizardBack">← Back</button><button class="btn btn-red wizard-next" type="button" id="wizardNext">Continue →</button></div>
-          <p class="form-note">No payment or commitment. This test form prepares an email request for Eastland.</p>
+          <p class="form-note">No payment or commitment. Completed test requests prepare an email for Eastland; incomplete requests are only saved on this device until the production lead backend is connected.</p>
         </form>
       </div>
     </section>
