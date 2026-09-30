@@ -19,6 +19,56 @@ const wizard = document.getElementById('quoteWizard');
 
 if (wizard) {
   const STORAGE_KEY = 'eastlandQuoteDraftV1';
+  const PARTIAL_ENDPOINT = window.EASTLAND_PARTIAL_LEAD_ENDPOINT || '';
+  const PARTIAL_DEBOUNCE_MS = 2500;
+  let partialSaveTimer = null;
+  let leadId = localStorage.getItem('eastlandLeadId') || '';
+
+  function ensureLeadId() {
+    if (!leadId) {
+      leadId = 'lead_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+      localStorage.setItem('eastlandLeadId', leadId);
+    }
+    return leadId;
+  }
+
+  function validPartialContact() {
+    const firstName = String(values.firstName || '').trim();
+    const phone = String(values.phone || '').trim();
+    const email = String(values.email || '').trim();
+    const hasPhone = phone.replace(/\D/g, '').length >= 10;
+    const hasEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    return Boolean(firstName && (hasPhone || hasEmail));
+  }
+
+  async function savePartialLead() {
+    if (!PARTIAL_ENDPOINT || !validPartialContact()) return;
+
+    const payload = {
+      leadId: ensureLeadId(),
+      status: 'partial',
+      source: 'eastland-website',
+      capturedAt: new Date().toISOString(),
+      fields: { ...values }
+    };
+
+    try {
+      await fetch(PARTIAL_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true
+      });
+    } catch (_) {
+      // Do not interrupt the customer if the draft save fails.
+    }
+  }
+
+  function schedulePartialLeadSave() {
+    if (!PARTIAL_ENDPOINT || !validPartialContact()) return;
+    clearTimeout(partialSaveTimer);
+    partialSaveTimer = setTimeout(savePartialLead, PARTIAL_DEBOUNCE_MS);
+  }
   const panels = [...wizard.querySelectorAll('.wizard-panel[data-step]')];
   const nextButton = document.getElementById('wizardNext');
   const backButton = document.getElementById('wizardBack');
@@ -115,6 +165,7 @@ if (wizard) {
       values[field.name] = field.type === 'checkbox' ? field.checked : field.value;
     });
     saveDraft();
+    schedulePartialLeadSave();
   }
 
   function renderSummary() {
@@ -213,6 +264,7 @@ if (wizard) {
     openEmailHandoff();
     wizard.classList.add('submitted');
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem('eastlandLeadId');
     setStep('success');
   });
 
@@ -243,6 +295,8 @@ if (wizard) {
     wizard.reset();
     Object.keys(values).forEach((key) => delete values[key]);
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem('eastlandLeadId');
+    leadId = '';
 
     wizard.querySelectorAll('.choice-button').forEach((item) => item.classList.remove('selected'));
     preview.replaceChildren();
