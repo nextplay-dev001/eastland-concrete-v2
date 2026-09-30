@@ -30,6 +30,21 @@ Implemented:
 - Development `noindex` protection and `robots.txt` block
 - Custom 404 page
 
+## Partial lead recovery
+
+Production requirement:
+
+- Contact information is intentionally collected early in the wizard.
+- Once a visitor provides a first name plus at least one usable contact method, the frontend can upsert a partial lead to a backend endpoint.
+- Do **not** email Tommy on every keystroke.
+- The backend should wait for an inactivity window, then send one email with a subject such as `[PARTIAL LEAD] Eastland Website - Driveway - Olathe`.
+- The email should show the fields captured and explicitly list missing fields.
+- If the visitor later completes the request, update the same lead ID to `complete` and send the normal completed-lead email.
+- The form discloses that Eastland may follow up if contact information is entered but the request is not completed.
+- The GitHub Pages test does not auto-send partial leads because it has no backend. It only saves drafts locally.
+
+The frontend already supports a future endpoint through `window.EASTLAND_PARTIAL_LEAD_ENDPOINT`. When a production backend is connected, it can receive debounced partial-lead updates without changing the form UX.
+
 ## Quote wizard
 
 The test build collects:
