@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# Temporary test site. Remove the block when the production domain is ready.
