@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" role="img" aria-labelledby="t d">
+<title id="t">Eastland Concrete mark</title><desc id="d">Stylized Eastland E mark used for the website test build.</desc>
+<rect width="320" height="300" rx="28" fill="#0b0b0c"/>
+<circle cx="160" cy="140" r="104" fill="none" stroke="#ecebea" stroke-width="10"/>
+<path d="M98 77h116v31h-77v25h65v30h-65v27h80v32H98z" fill="#ecebea"/>
+<path d="M98 77h44v145H98z" fill="#b81721"/>
+<text x="160" y="280" fill="#ecebea" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="5">EASTLAND</text>
+</svg>
