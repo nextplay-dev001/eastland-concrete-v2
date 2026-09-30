@@ -1,10 +1,10 @@
 # Eastland Concrete V2
 
-Working redesign and lead-generation prototype for Eastland Concrete.
+Working redesign and lead-generation demo for Eastland Concrete.
 
 ## Current build
 
-The repo now contains a hosting-agnostic static site that can be served by GitHub Pages for review.
+The repo now contains a polished static demo site served by GitHub Pages for review before production hosting is selected.
 
 Implemented:
 
@@ -17,7 +17,7 @@ Implemented:
   - Slabs & garage floors
   - Sidewalks & flatwork
   - Light commercial concrete
-- Project-gallery structure
+- Project gallery using existing Eastland project photography
 - About page
 - Service-area strategy page
 - Existing Eastland testimonial carried into the new design
@@ -67,7 +67,7 @@ For production, replace the email handoff with a secure server-side endpoint tha
 
 ## Project photos
 
-The SVG project visuals in `assets/` are **development placeholders**, not claimed Eastland work. Replace them with real Eastland job photos before launch.
+The visible demo uses existing Eastland project photography from the current public website. Keep those photos or replace them with higher-resolution originals from Tommy before production launch.
 
 ## Search / SEO status
 
