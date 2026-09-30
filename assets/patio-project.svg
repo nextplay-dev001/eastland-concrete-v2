@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="t d">
-<title id="t">Patio project placeholder</title><desc id="d">Stylized concrete patio visual for the Eastland test website. Replace with a real Eastland project photo before launch.</desc>
-<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#343538"/><stop offset="1" stop-color="#101113"/></linearGradient></defs>
-<rect width="1200" height="800" fill="url(#g)"/><rect x="100" y="290" width="1000" height="350" rx="10" fill="#bbb8b1"/><path d="M100 430h1000M340 290v350M640 290v350M930 290v350" stroke="#e2dfd8" stroke-width="5" opacity=".7"/>
-<rect x="85" y="275" width="1030" height="380" rx="12" fill="none" stroke="#b81721" stroke-width="8"/>
-<g fill="#fff" font-family="Arial,sans-serif"><text x="70" y="90" font-size="23" font-weight="700" letter-spacing="4">EASTLAND CONCRETE</text><text x="70" y="130" font-size="15" opacity=".72" letter-spacing="2">PROJECT PHOTO PLACEHOLDER • PATIO</text></g>
-</svg>
