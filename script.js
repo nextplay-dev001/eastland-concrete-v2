@@ -125,7 +125,7 @@ if (wizard) {
       label.textContent = `STEP ${step} OF 5`;
       progress.style.width = `${step * 20}%`;
       backButton.style.visibility = step === 1 ? 'hidden' : 'visible';
-      nextButton.textContent = step === 5 ? 'Prepare Email Request →' : 'Continue →';
+      nextButton.textContent = step === 5 ? 'Send Estimate Request →' : 'Continue →';
       if (step === 5) renderSummary();
     }
   }
@@ -215,7 +215,7 @@ if (wizard) {
         ? `Selected photos (test mode cannot auto-attach): ${selectedPhotos.join(', ')}`
         : 'Photos selected: none',
       '',
-      'Submitted from Eastland Concrete V2 GitHub Pages test build.'
+      'Submitted from the Eastland Concrete website.'
     ].join('\n');
   }
 
