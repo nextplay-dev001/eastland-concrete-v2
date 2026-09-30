@@ -126,7 +126,12 @@ if (wizard) {
       values.timeframe || null
     ].filter(Boolean);
 
-    summary.innerHTML = '<strong>REQUEST SUMMARY</strong><br>' + lines.join(' • ');
+    summary.replaceChildren();
+    const heading = document.createElement('strong');
+    heading.textContent = 'REQUEST SUMMARY';
+    const detail = document.createElement('div');
+    detail.textContent = lines.join(' • ');
+    summary.append(heading, detail);
   }
 
   function buildEmailBody() {
@@ -224,9 +229,13 @@ if (wizard) {
   if (photos) {
     photos.addEventListener('change', () => {
       const files = [...photos.files].slice(0, 8);
-      preview.innerHTML = files.length
-        ? files.map((file) => `<span class="photo-chip">${file.name}</span>`).join('')
-        : '';
+      preview.replaceChildren();
+      files.forEach((file) => {
+        const chip = document.createElement('span');
+        chip.className = 'photo-chip';
+        chip.textContent = file.name;
+        preview.appendChild(chip);
+      });
     });
   }
 
@@ -236,7 +245,7 @@ if (wizard) {
     localStorage.removeItem(STORAGE_KEY);
 
     wizard.querySelectorAll('.choice-button').forEach((item) => item.classList.remove('selected'));
-    preview.innerHTML = '';
+    preview.replaceChildren();
     wizard.classList.remove('submitted');
     setStep(1);
   });
